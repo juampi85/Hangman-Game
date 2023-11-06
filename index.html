@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale= 1.0, maximum-scale = 1.0, minimum-scale=1.0"
+    />
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <div>
+          <h1 class="titulo">Juego del Ahorcado....lo podrás salvar???</h1>
+        </div>
+
+        <div class="opcionesJuego">
+          <button class="btnJuego" id="iniciar-juego">A JUGAR...!!</button>
+          <button class="btnJuego" id="nueva-palabra">NUEVA PALABRA</button>
+          <input
+            class="text-input"
+            type="text"
+            id="inputPalabraNueva"
+            maxlength="8"
+            placeholder="Escriba la nueva palabra (de hasta 8 caracteres)"
+          />
+        </div>
+      </section>
+
+      <section id="sectorAhorcado">
+        <canvas id="ahorcado" height="400px" width="800px"></canvas>
+
+        <div class="mensaje">
+          <button class="btnNuevoJuego" id="reiniciar-juego" onclick="location.reload()">
+            NUEVO JUEGO
+          </button>
+          <div id="palabraSecreta"></div>
+          <h2 id="tituloLetras"></h2>
+          <div id="letrasError"></div>
+          <div id="vidas"></div>
+        </div>
+        <div id="resultadoGanador"></div>
+        <div id="resultadoPerdedor"></div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p>
+        &copy; 2022 -
+        <a href="https://www.linkedin.com/in/juan-pablo-accinelli-a84a01228/">
+          <b> Juan Pablo Accinelli </b></a
+        >
+        - Todos los derechos reservados
+      </p>
+    </footer>
+
+    <script type="text/javascript" src="./javascript/canvas.js"></script>
+    <script type="text/javascript" src="./javascript/script.js"></script>
+    <script type="text/javascript" src="./javascript/ingresoLetra.js"></script>
+    <script type="text/javascript" src="./javascript/ingresoPalabra.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </body>
+</html>
