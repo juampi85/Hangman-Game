@@ -1,27 +1,45 @@
-var palabras = ["PERRO", "FUTBOL", "CACEROLA", "DISCO", "AUTOMOVIL", "PROGRAMADOR", "JAVASCRIPT", "ALURA", "ORACLE"];
-var palNueva;
-var letra;
-var letrasRepetidas= [];
-var letrasErroneas= [];
-var vidasTotales = 5;
-var palabra;
-var palabraGuion;
-var repetida = false;
+const palabras = [
+  'PERRO',
+  'FUTBOL',
+  'CACEROLA',
+  'DISCO',
+  'AUTOMOVIL',
+  'PROGRAMADOR',
+  'JAVASCRIPT',
+  'ALURA',
+  'ORACLE',
+];
+let palabra;
+let palabraGuion;
+const letrasRepetidas = [];
+const letrasErroneas = [];
+let vidasTotales = 5;
 
-document.getElementById("ahorcado").style.display = "none";
-document.getElementById("reiniciar-juego").style.display= "none";
+document.getElementById('ahorcado').style.display = 'none';
+document.getElementById('reiniciar-juego').style.display = 'none';
 
-var jugar = document.getElementById("iniciar-juego")
-jugar.addEventListener("click", function(){
-    document.getElementById("sectorAhorcado").style.display = "flex";           
-    document.getElementById("ahorcado").style.display = "block";
+const jugar = document.getElementById('iniciar-juego');
+const sectorAhorcado = document.getElementById('sectorAhorcado');
 
-    palabra = palabras[Math.floor(Math.random() * palabras.length)]
-    palabraGuion = palabra.replace(/./g , "_ ")
+jugar.addEventListener('click', function () {
+  sectorAhorcado.style.display = 'flex';
+  sectorAhorcado.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('ahorcado').style.display = 'block';
 
-    document.getElementById("palabraSecreta").innerHTML = palabraGuion
-    document.getElementById("tituloLetras").innerHTML = "LETRAS EQUIVOCADAS"
-    document.getElementById("vidas").innerHTML = "LA CANTIDAD DE VIDAS ES:  " + vidasTotales; 
-    dibujarBase()
-    window.addEventListener("keydown", ingresarLetra);    
-})
+  iniciarJuego();
+
+  window.addEventListener('keydown', ingresarLetra);
+});
+
+function iniciarJuego() {
+  palabra = palabras[Math.floor(Math.random() * palabras.length)];
+  palabraGuion = '_ '.repeat(palabra.length);
+  document.getElementById('palabraSecreta').innerHTML = palabraGuion;
+  document.getElementById('tituloLetras').innerHTML = 'LETRAS EQUIVOCADAS';
+  vidasTotales = 5;
+  letrasRepetidas.length = 0; //* Reinicia el arreglo sin cambiar la referencia
+  letrasErroneas.length = 0; //* Reinicia el arreglo sin cambiar la referencia
+  document.getElementById('letrasError').innerHTML = '';
+  document.getElementById('vidas').innerHTML =
+    'LA CANTIDAD DE VIDAS ES: ' + vidasTotales;
+}
