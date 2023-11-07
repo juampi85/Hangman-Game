@@ -42,9 +42,10 @@ function comprobarLetra(letra){
             
             if (vidasTotales == 0){
                 dibujarOjosMuertos();
+                dibujarBocaZigzag();
                 document.getElementById("resultadoPerdedor").innerHTML = `PERDISTE...!! La palabra secreta era: ${palabra}`;
                 document.getElementById("reiniciar-juego").style.display= "block";
-                window.removeEventListener("keydown", ingresarLetra); // bloquea el teclado
+                window.removeEventListener("keydown", ingresarLetra); //! acá bloqueo el teclado
             }
             document.getElementById("vidas").innerHTML = `Te quedan ${vidasTotales} vidas...`;                   
         }          
@@ -53,25 +54,33 @@ function comprobarLetra(letra){
     palabraGuion = nuevo;
     document.getElementById("palabraSecreta").innerHTML = palabraGuion;
     
-    if(palabraGuion.search("_") == -1){
+    if (palabraGuion.search("_") == -1) {
+        dibujarRostro();
+        dibujarTorso();
+        dibujarBrazos();
+        dibujarPiernas();
+        dibujarOjosFelices();
+        dibujarSonrisaFeliz();
+        dibujarLenguaFeliz();
+
         document.getElementById("resultadoGanador").innerHTML = "BRAVOOO....Lo salvaste al amiguito!!";
         document.getElementById("reiniciar-juego").style.display= "block";
-        window.removeEventListener("keydown", ingresarLetra); //bloquea el teclado
+        window.removeEventListener("keydown", ingresarLetra); //* bloquea el teclado
     }
 }
 
 function verificarLetra(valor){
     letra = valor;
-    var agrego = false; //se utililiza para determinar si descuentan vidas o no 
+    var agrego = false; //* lo utililizo para determinar si descuentan vidas o no 
     
     if(!letrasErroneas.includes(letra)){
-        //verifico que si no esta incluida en el arreglo de letras erroneas lo incluya
+        //* verifico que si no esta incluida en el arreglo de letras erroneas lo incluya
         letrasErroneas.push(letra);
         document.getElementById("letrasError").innerHTML= letrasErroneas;
         agrego = true;
     }else{        
         letrasRepetidas.push(letra);
-        //si ya se encuentra la letra en letras erroneas se incluya el el otro arreglo de letras repetidas
+        //* si ya se encuentra la letra en letras erroneas se incluya el el otro arreglo de letras repetidas
         swal({
             title:`Ya probaste la letra: ${letra}`,
             buttons:false,
